@@ -1,4 +1,5 @@
 <!-- Livro -->
+<?php require 'dados.php'; ?>
 <?php foreach ($livros as $livros) { ?>
     <div class="p-2 rounded border-stone-800 border-2">
         <div class="flex">
