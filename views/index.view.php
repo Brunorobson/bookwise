@@ -12,7 +12,7 @@
             <div class="flex">
                 <div class="w-1/3 bg-stone-800">imagens</div>
                 <div>
-                    <a class="font-semibold" href="livro.php?id=<?= $livros['id'] ?>" hover: underline>
+                    <a class="font-semibold" href="livro?id=<?= $livros['id'] ?>" hover: underline>
                         <?= $livros['titulo'] ?>
                     </a>
 
