@@ -6,9 +6,7 @@ function carregarController()
     if (!$controller) $controller = 'index';
 
     if (! file_exists("controllers/{$controller}.controller.php")) {
-        http_response_code(404);
-        echo "404 - Pagina não existe";
-        die();
+        abort(404);
     }
 
     require "controllers/{$controller}.controller.php";
