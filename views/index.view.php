@@ -1,6 +1,6 @@
 <form class="w-full flex space-x-2 mt-6">
     <input
-        type="text"
+        type="text" name="pesquisar"
         class="border-stone-800 border-2 rounded-md bg-stone-900 text-sn focus:outline-none px-2 py-1"
         placeholder="Pesquisar..." />
     <button type="submit">🔎</button>
@@ -10,7 +10,7 @@
     <?php foreach ($livros as $livros): ?>
         <div class="p-2 rounded border-stone-800 border-2">
             <div class="flex">
-                <div class="w-1/3 bg-stone-800">imagens</div>
+                <div class="w-1/3 bg-stone-800"><?= $livros->usuario_id ?></div>
                 <div>
                     <a class="font-semibold" href="livro?id=<?= $livros->id ?>" hover: underline>
                         <?= $livros->titulo ?>
