@@ -19,7 +19,7 @@
                 <li></li><a href="/meus-livros">Meus Livros</a>
             </ul>
             <ul>
-                <li></li><a href="#">Login
+                <li></li><a href="/login">Login
                 </a></li>
             </ul>
         </nav>
