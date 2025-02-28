@@ -1,5 +1,4 @@
 <?php
-require 'Validacao.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $validacao = Validacao::validar([
@@ -7,7 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'email' => [
             'required',
             'email',
-            'confirmed'
+            'confirmed',
+            'unique:usuarios'
         ],
         'senha' => [
             'required',
@@ -17,12 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]
     ], $_POST);
 
-    if ($validacao->naoPassou()) {
-        header('location: /login');
-        exit();
-    }
-    if (sizeof($validacoes) > 0) {
-        $_SESSION['validacoes'] = $validacoes;
+    if ($validacao->naoPassou('registrar')) {
         header('location: /login');
         exit();
     }
@@ -33,10 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         params: [
             'nome' => $_POST['nome'],
             'email' => $_POST['email'],
-            'senha' => $_POST['senha']
+            'senha' => password_hash($_POST['senha'], PASSWORD_DEFAULT)
         ]
     );
 
-    header('location: /login?mensagem=Usuário cadastrado com sucesso!');
+    flash()->push('mensagem', 'Usuário cadastrado com sucesso');
+    header('location: /login');
     exit();
 }
+
+header('location: /login');
+exit();
