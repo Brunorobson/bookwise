@@ -8,24 +8,35 @@
     <title>Bookwise - projeto</title>
 </head>
 
-<body class="bg-stone-950 text-stone-400">
-    <header class="bg-stone-900">
+<body class="bg-slate-950 text-slate-400">
+    <header class="bg-slate-900">
         <nav class="mx-auto max-w-screen-lg flex justify-between px-8 py-4">
             <div class="font-bold text-xl tracking-wide">
                 Book Wise
             </div>
             <ul class="flex space-x-4 font-bold">
-                <li><a href="/" class="text-line-500">Explorar</a></li>
+                <li><a href="/" class="text-slate-500">Explorar</a></li>
                 <li></li><a href="/meus-livros">Meus Livros</a>
             </ul>
             <ul>
-                <li></li><a href="/login">Login
-                </a></li>
+                <?php if (isset($_SESSION['auth'])): ?>
+                    <li><a href="/logout" class="hover:underline">Oi <?= $_SESSION['auth']->nome ?></a></li>
+                <?php else: ?>
+                    <li><a href="/login" class="hover:underline">Fazer Login</a></li>
+                <?php endif ?>
+
             </ul>
         </nav>
     </header>
 
+
+
     <main class="mx-auto max-w-screen-lg space-y-6">
+        <?php if ($mensagem = flash()->get('mensagem')): ?>
+            <div class="bg-green-900 text-green-500 px-4 py-1 rounded-mb text-sm font-bold">
+                <?= $mensagem ?>
+            </div>
+        <?php endif ?>
         <?php require "views/{$view}.view.php" ?>
     </main>
 </body>
