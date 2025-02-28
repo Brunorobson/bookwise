@@ -1,9 +1,7 @@
 <?php
 class Validacao
 {
-
-    public $validacoes;
-
+    public $validacoes = [];
     public static function validar($regras, $dados)
     {
         $validacao = new Validacao();
@@ -26,6 +24,22 @@ class Validacao
         return $validacao;
     }
 
+    private function unique($tabela, $campo, $valor)
+    {
+        if (strlen($valor) == 0) {
+            return;
+        }
+        $db = new Database(config('database'));
+
+        $resultado = $db->query(
+            query: "select * from $tabela where $campo = :valor",
+            params: ['valor' => $valor]
+        )->fetch();
+
+        if ($resultado) {
+            $this->validacoes[] = "O $campo já existe";
+        }
+    }
     private function required($campo, $valor)
     {
         if (strlen($valor) == 0) {
@@ -66,9 +80,14 @@ class Validacao
             $this->validacoes[] = "O campo $campo deve conter pelo menos um caractere especial";
         }
     }
-    public function naoPassou()
+    public function naoPassou($nomeCustomizado = null)
     {
-        $_SESSION['validacoes'] = $this->validacoes;
+        $chave = 'validacoes';
+        if ($nomeCustomizado) {
+            $chave .= '_' . $nomeCustomizado;
+        }
+        flash()->push($chave, $this->validacoes);
+        //$_SESSION['validacoes'] = $this->validacoes;
         return sizeof($this->validacoes) > 0;
     }
 }
