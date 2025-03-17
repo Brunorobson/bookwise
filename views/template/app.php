@@ -19,8 +19,8 @@
                 <li></li><a href="/meus-livros">Meus Livros</a>
             </ul>
             <ul>
-                <?php if (isset($_SESSION['auth'])): ?>
-                    <li><a href="/logout" class="hover:underline">Oi <?= $_SESSION['auth']->nome ?></a></li>
+                <?php if (auth()): ?>
+                    <li><a href="/logout" class="hover:underline">Oi <?= auth()->nome ?></a></li>
                 <?php else: ?>
                     <li><a href="/login" class="hover:underline">Fazer Login</a></li>
                 <?php endif ?>
