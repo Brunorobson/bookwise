@@ -1,5 +1,5 @@
 <?= $livro->titulo ?>
-<div class="p-2 rounded border-stone-800 border-2 bg-stone-800">
+<div class="p-2 rounded border-slate-800 border-2 bg-slate-800">
     <div class="flex">
         <div class="w-1/3">image</div>
         <div class="space-y-1">
@@ -36,11 +36,7 @@
             <div class="flex flex-col">
                 <input type="hidden" name="livro_id" value="<?= $livro->id ?>">
                 <label class="text-slate-400 mb-1">Avaliacao</label>
-                <textarea
-                    type="text"
-                    name="avaliacao"
-                    class="border-slate-800 border-2 rounded-md bg-slate-900 text-sm focus:outline-none px-2 py-1">
-                </textarea>
+                <textarea type="text" name="avaliacao" class="border-slate-800 border-2 rounded-md bg-slate-900 text-sm focus:outline-none px-2 py-1"></textarea>
             </div>
 
             <div class="flex flex-col">
@@ -55,8 +51,7 @@
                     <option value="5">5</option>
                 </select>
             </div>
-            <button type="submit" class="border-slate-800 bg-slate-900 text-slate-400 px-4 py-1 rounded-md border-2 hover:bg-slate-800">Login</button>
-
+            <button type="submit" class="border-slate-800 bg-slate-900 text-slate-400 px-4 py-1 rounded-md border-2 hover:bg-slate-800">Avaliar</button>
         </form>
     </div>
 </div>
