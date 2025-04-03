@@ -5,6 +5,7 @@ class Livro
     public $titulo;
     public $autor;
     public $descricao;
+    public $ano_de_lancamento;
     public $usuario_id;
 
 
@@ -16,6 +17,7 @@ class Livro
         $livro->autor = $item['autor'];
         $livro->descricao = $item['descricao'];
         $livro->usuario_id = $item['usuario_id'];
+        $livro->ano_de_lancamento = $item['ano_de_lancamento'];
         return $livro;
     }
 }
