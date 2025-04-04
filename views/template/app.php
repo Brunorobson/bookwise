@@ -16,7 +16,9 @@
             </div>
             <ul class="flex space-x-4 font-bold">
                 <li><a href="/" class="text-slate-500">Explorar</a></li>
+                <?php if(auth()):?>
                 <li></li><a href="/meus-livros">Meus Livros</a>
+                <?php endif;?>
             </ul>
             <ul>
                 <?php if (auth()): ?>

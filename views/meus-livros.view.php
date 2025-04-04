@@ -1,8 +1,20 @@
-<h1>Meus Livros</h1>
+<h1 class="mt-6 font-bold text-lg">Meus Livros</h1>
 
 <div class="grid grid-cols-4 gap-4">
-    <div class="col-span-3 gap-4 grid">
+    <div class="col-span-3 flex flex-col gap-4">
+        <?php foreach ($livros as $livro): ?>
+            <div class="p-2 rounded border-slate-800 border-2 bg-slate-900">
+                <div class="flex">
+                    <div class="w-1/3">image</div>
+                    <div class="space-y-1">
+                        <a href="livro.php?id=<?= $livro->id ?>" class="font-semibold" hover: underline><?= $livro->titulo ?></a>
+                        <div class="text-xs italic"><?= $livro->autor ?></div>
+                    </div>
 
+                </div>
+                <div class="text-sm mt-2"><?= $livro->descricao ?></div>
+            </div>
+        <?php endforeach; ?>
     </div>
     <div>
         <div class="border border-slate-700 rounded">
@@ -10,29 +22,29 @@
             <form class="p-4 space-y-4" method="POST" action="/livro-criar">
 
                 <?php if ($validacoes = flash()->get('validacoes')): ?>
-                <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-mb border-2 text-sm font-bold">
-                    <ul>
-                        <li>Deu ruim!</li>
-                        <?php foreach ($validacoes as $validacao): ?>
-                        <li><?= $validacao ?></li>
-                        <?php endforeach ?>
-                    </ul>
-                </div>
+                    <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-mb border-2 text-sm font-bold">
+                        <ul>
+                            <li>Deu ruim!</li>
+                            <?php foreach ($validacoes as $validacao): ?>
+                                <li><?= $validacao ?></li>
+                            <?php endforeach ?>
+                        </ul>
+                    </div>
                 <?php endif ?>
 
-                <div class="flex flex-col">                    
+                <div class="flex flex-col">
                     <label class="text-slate-400 mb-1">Titulo</label>
                     <input type="text" name="titulo"
                         class="border-slate-800 border-2 rounded-md bg-slate-900 text-sm focus:outline-none px-2 py-1"></input>
                 </div>
 
-                <div class="flex flex-col">                    
+                <div class="flex flex-col">
                     <label class="text-slate-400 mb-1">Autor</label>
                     <input type="text" name="autor"
                         class="border-slate-800 border-2 rounded-md bg-slate-900 text-sm focus:outline-none px-2 py-1"></input>
                 </div>
 
-                <div class="flex flex-col">                    
+                <div class="flex flex-col">
                     <label class="text-slate-400 mb-1">Descrição</label>
                     <textarea type="text" name="descricao"
                         class="border-slate-800 border-2 rounded-md bg-slate-900 text-sm focus:outline-none px-2 py-1"></textarea>
@@ -42,9 +54,9 @@
                     <label class="text-slate-400 mb-1">Ano de Lançamento</label>
                     <select name="ano_de_lancamento"
                         class="border-slate-800 border-2 rounded-md bg-slate-900 text-sm focus:outline-none px-2 py-1">
-                            <?php foreach (range(1900, date('Y')) as $ano):?>
-                                <option value="<?=$ano?>"><?=$ano?></option>
-                            <?php endforeach; ?>
+                        <?php foreach (range(1900, date('Y')) as $ano): ?>
+                            <option value="<?= $ano ?>"><?= $ano ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <button type="submit"
