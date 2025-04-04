@@ -1,3 +1,11 @@
+<?php 
+    $sumNotas = array_reduce($avaliacoes, function($carry, $a){
+        return ($carry ?? 0) + $a->nota;
+    }) ?? 0;
+    $sumNotas = round($sumNotas / 5);
+    $notaFinal = str_repeat('⭐', $sumNotas);
+?>
+
 <?= $livro->titulo ?>
 <div class="p-2 rounded border-slate-800 border-2 bg-slate-800">
     <div class="flex">
@@ -5,7 +13,7 @@
         <div class="space-y-1">
             <a href="livro.php?id=<?= $livro->id ?>" class="font-semibold" hover: underline><?= $livro->titulo ?></a>
             <div class="text-xs italic"><?= $livro->autor ?></div>
-            <div class="text-xs italic">⭐⭐⭐⭐⭐(3 avaliações)</div>
+            <div class="text-xs italic"><?=$notaFinal ?> (<?=count($avaliacoes) ?> Avaliações)</div>
         </div>
 
     </div>
@@ -14,7 +22,17 @@
 
 <h2>Avaliações</h2>
 <div class="grid grid-cols-4 gap-4">
-<div class="col-span-3">lista</div>
+<div class="col-span-3 gap-4 grid">
+    <?php foreach($avaliacoes as $avaliacao): ?>
+        <div class="border border-slate-700 rounded p-2">
+            <?=$avaliacao->avaliacao?>
+            <?php
+                $nota = str_repeat("⭐", $avaliacao->nota);
+            ?>
+            <?=$nota?>
+        </div>
+    <?php endforeach; ?>
+</div>
 <div>
     <?php if(auth()): ?>
 <div class="border border-slate-700 rounded">
