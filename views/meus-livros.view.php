@@ -1,12 +1,13 @@
 <h1 class="mt-6 font-bold text-lg">Meus Livros</h1>
 
 <div class="grid grid-cols-4 gap-4">
-    <div class="col-span-3 flex flex-col gap-4">
+    <div class="col-span-2 flex flex-col gap-4">
         <?php foreach ($livros as $livro){
-           require 'partials/_livros.php';
+           require 'partials/_meus-livros.php';
         }?>
     </div>
-    <div>
+    
+    <div class="col-span-2"> 
         <div class="border border-slate-700 rounded">
             <h1 class="border-b border-slate-700 text-slate-400 font-bold px-4 py-2">Cadastre um novo livro</h1>
             <form class="p-4 space-y-4" method="POST" action="/livro-criar" enctype="multipart/form-data">

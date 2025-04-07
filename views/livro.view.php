@@ -1,6 +1,6 @@
-<?= $livro->titulo ?>
-<?php require 'partials/_livros.php';?>
-
+<div class="mt-2 mb-2 text-bold">
+<?php require 'partials/_meus-livros.php';?>
+</div>
 <h2>Avaliações</h2>
 <div class="grid grid-cols-4 gap-4">
 <div class="col-span-3 gap-4 grid">
