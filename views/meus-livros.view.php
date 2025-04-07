@@ -9,7 +9,7 @@
     <div>
         <div class="border border-slate-700 rounded">
             <h1 class="border-b border-slate-700 text-slate-400 font-bold px-4 py-2">Cadastre um novo livro</h1>
-            <form class="p-4 space-y-4" method="POST" action="/livro-criar">
+            <form class="p-4 space-y-4" method="POST" action="/livro-criar" enctype="multipart/form-data">
 
                 <?php if ($validacoes = flash()->get('validacoes')): ?>
                     <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-mb border-2 text-sm font-bold">
@@ -21,6 +21,12 @@
                         </ul>
                     </div>
                 <?php endif ?>
+
+                
+            <div class="flex flex-col">
+                <label class="text-slate-400 mb-1">Imagem</label>
+                <input type="file" name="imagem" class="border-slate-800 border-2 rounded-md bg-slate-900 text-sm focus:outline-none px-2 py-1"/>
+            </div>
 
                 <div class="flex flex-col">
                     <label class="text-slate-400 mb-1">Titulo</label>
