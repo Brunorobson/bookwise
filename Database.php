@@ -1,16 +1,16 @@
 <?php
 class Database
 {
-    private $db;
+    private $database;
     public function __construct($config)
     {
         $connectionString = $config['driver'] . ':' . $config['database'];
-        $this->db = new PDO($connectionString);
+        $this->database = new PDO($connectionString);
     }
 
     public function query($query, $class = null, $params = [])
     {
-        $prepare = $this->db->prepare($query);
+        $prepare = $this->database->prepare($query);
         if ($class) {
             $prepare->setFetchMode(PDO::FETCH_CLASS, $class);
         }
